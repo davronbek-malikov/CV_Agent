@@ -1,0 +1,172 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #ffffff;
+  --surface: #f6f7f9;
+  --line: #e6e8ec;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --primary-soft: #eff4ff;
+  --accent: #10b981;
+  --accent-dark: #047857;
+  --warning: #f59e0b;
+  --warning-dark: #b45309;
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-primary: var(--primary);
+  --color-primary-dark: var(--primary-dark);
+  --color-primary-soft: var(--primary-soft);
+  --color-accent: var(--accent);
+  --color-accent-dark: var(--accent-dark);
+  --color-warning: var(--warning);
+  --color-warning-dark: var(--warning-dark);
+  --font-sans: var(--font-inter), "Pretendard Variable", Pretendard, system-ui, sans-serif;
+  --font-mono: var(--font-mono-jb), ui-monospace, monospace;
+  --shadow-soft: 0 1px 3px rgba(15, 23, 42, 0.06), 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+:lang(ko) body,
+html:lang(ko) {
+  word-break: keep-all;
+}
+
+::selection {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+@layer components {
+  .card {
+    background: white;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    box-shadow: 0 12px 40px -12px rgba(15, 23, 42, 0.12), 0 2px 6px rgba(15, 23, 42, 0.04);
+  }
+  .chip {
+    border: 1px solid var(--line);
+    background: white;
+    border-radius: 999px;
+    padding: 7px 13px;
+    font-size: 13px;
+    color: var(--ink);
+    transition: all 0.15s ease-out;
+  }
+  .chip:hover {
+    border-color: var(--primary);
+    background: var(--primary-soft);
+    color: var(--primary-dark);
+  }
+  .chip-ghost {
+    border-style: dashed;
+    color: var(--muted);
+  }
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 12px;
+    background: var(--ink);
+    color: white;
+    font-size: 15px;
+    font-weight: 500;
+    transition: background 0.15s ease-out, transform 0.15s ease-out;
+  }
+  .btn-primary:hover {
+    background: var(--primary);
+  }
+  .btn-ghost {
+    display: inline-flex;
+    align-items: center;
+    height: 46px;
+    padding: 0 20px;
+    border-radius: 12px;
+    border: 1px solid var(--line);
+    color: var(--ink);
+    font-size: 15px;
+    font-weight: 500;
+    transition: border-color 0.15s ease-out;
+  }
+  .btn-ghost:hover {
+    border-color: var(--ink);
+  }
+}
+
+/* Faint dotted grid behind the hero */
+.grid-bg {
+  background-image: radial-gradient(circle at 1px 1px, #e6e8ec 1px, transparent 0);
+  background-size: 24px 24px;
+  mask-image: radial-gradient(ellipse 70% 60% at 30% 30%, black 30%, transparent 75%);
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}
+.fade-up { animation: fade-up 0.28s ease-out both; }
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.pulse { animation: pulse-dot 1.4s ease-in-out infinite; }
+
+@keyframes bounce-dot {
+  0%, 80%, 100% { transform: translateY(0); opacity: 0.5; }
+  40% { transform: translateY(-4px); opacity: 1; }
+}
+.dot { animation: bounce-dot 1s ease-in-out infinite; }
+
+@keyframes grow { from { width: 0; } }
+.bar { animation: grow 0.7s ease-out both; }
+
+@keyframes ring { from { stroke-dashoffset: 100.53; } }
+.ring-anim { animation: ring 0.8s ease-out both; }
+
+/* A light pulse travelling along each connector in the architecture diagram */
+.flow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  animation: travel-x 1.8s linear infinite;
+}
+@keyframes travel-x {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(100%); }
+}
+@media (max-width: 1023px) {
+  .flow::after {
+    background: linear-gradient(180deg, transparent, var(--primary), transparent);
+    animation-name: travel-y;
+  }
+  @keyframes travel-y {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(100%); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  html { scroll-behavior: auto; }
+}
