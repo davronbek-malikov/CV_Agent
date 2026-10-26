@@ -12,8 +12,8 @@ COPY libs ./libs
 COPY agents ./agents
 COPY services ./services
 
-RUN useradd --create-home --uid 1000 darvoza && mkdir -p /app/data && chown darvoza /app/data
-USER darvoza
+RUN useradd --create-home --uid 1000 portiq && mkdir -p /app/data && chown portiq /app/data
+USER portiq
 
 EXPOSE 8000
 CMD ["python", "-m", "services.gateway.main"]

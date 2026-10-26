@@ -10,7 +10,7 @@ export default function Footer() {
       <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-4 px-4 py-10 sm:flex-row sm:items-center sm:px-6">
         <div className="flex items-center gap-2.5">
           <Logo size={24} />
-          <span className="text-[14px] font-semibold text-ink">Darvoza</span>
+          <span className="text-[14px] font-semibold text-ink">Portiq</span>
           <span className="text-[13px] text-muted">· {t.footer.made}</span>
         </div>
         <a

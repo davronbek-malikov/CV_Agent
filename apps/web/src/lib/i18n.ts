@@ -28,7 +28,7 @@ const en = {
     sub: "Pick what you need. It asks only what matters, one question at a time.",
     note: "Demo · sample data",
     modes: { jobs: "Find jobs", interview: "Interview only", roadmap: "Roadmap" },
-    qLang: "Hi! I’m Darvoza. First, choose your language.",
+    qLang: "Hi! I’m Portiq. First, choose your language.",
     qScope: "Where do you want to find a job?",
     scope: {
       uz: "Only Uzbekistan",
@@ -144,7 +144,7 @@ const en = {
     partial: "Partial",
     no: "Not found",
     covers: "covers",
-    planned: "Darvoza features are being built in public, phase by phase.",
+    planned: "Portiq features are being built in public, phase by phase.",
     sourceNote: "Sources: public reviews (incl. Jobscan’s 2026 AI tools review) and vendor pages, Oct 2026. Features change — check each site.",
     rows: {
       match: "Job search & matching",
@@ -164,7 +164,7 @@ const en = {
   },
   app: {
     open: "Open app",
-    title: "Darvoza agent",
+    title: "Portiq agent",
     offline: "The agent backend is not running here.",
     offlineHint: "This live site shows the design preview. To use the real multi-agent system, run it locally:",
     retry: "Try again",
@@ -211,7 +211,7 @@ const uz: Dict = {
     sub: "Keraklisini tanlang. U faqat muhim savollarni, bittadan beradi.",
     note: "Demo · namunaviy ma’lumot",
     modes: { jobs: "Ish topish", interview: "Faqat suhbat", roadmap: "Yo‘l xaritasi" },
-    qLang: "Salom! Men Darvozaman. Avval tilni tanlang.",
+    qLang: "Salom! Men Portiqman. Avval tilni tanlang.",
     qScope: "Qayerdan ish qidirmoqchisiz?",
     scope: {
       uz: "Faqat O‘zbekiston",
@@ -327,7 +327,7 @@ const uz: Dict = {
     partial: "Qisman",
     no: "Topilmadi",
     covers: "qamrovi",
-    planned: "Darvoza imkoniyatlari ochiq tarzda, bosqichma-bosqich qurilmoqda.",
+    planned: "Portiq imkoniyatlari ochiq tarzda, bosqichma-bosqich qurilmoqda.",
     sourceNote: "Manbalar: ochiq sharhlar (jumladan Jobscan 2026 AI vositalar sharhi) va sotuvchi sahifalari, 2026-yil oktabr. Imkoniyatlar o‘zgaradi — har bir saytni tekshiring.",
     rows: {
       match: "Ish qidirish va moslash",
@@ -347,7 +347,7 @@ const uz: Dict = {
   },
   app: {
     open: "Ilovani ochish",
-    title: "Darvoza agenti",
+    title: "Portiq agenti",
     offline: "Agent serveri bu yerda ishlamayapti.",
     offlineHint: "Bu sayt dizayn ko‘rinishi. Haqiqiy ko‘p agentli tizimni ishlatish uchun uni lokal ishga tushiring:",
     retry: "Qayta urinish",
@@ -392,7 +392,7 @@ const ru: Dict = {
     sub: "Выберите, что нужно. Он задаёт только важные вопросы, по одному.",
     note: "Демо · пример данных",
     modes: { jobs: "Найти работу", interview: "Только интервью", roadmap: "План развития" },
-    qLang: "Привет! Я Darvoza. Сначала выберите язык.",
+    qLang: "Привет! Я Portiq. Сначала выберите язык.",
     qScope: "Где вы хотите найти работу?",
     scope: {
       uz: "Только Узбекистан",
@@ -508,7 +508,7 @@ const ru: Dict = {
     partial: "Частично",
     no: "Не найдено",
     covers: "покрытие",
-    planned: "Функции Darvoza создаются открыто, этап за этапом.",
+    planned: "Функции Portiq создаются открыто, этап за этапом.",
     sourceNote: "Источники: открытые обзоры (в т. ч. обзор AI-инструментов Jobscan 2026) и страницы сервисов, октябрь 2026. Функции меняются — проверяйте на сайтах.",
     rows: {
       match: "Поиск и подбор вакансий",
@@ -528,7 +528,7 @@ const ru: Dict = {
   },
   app: {
     open: "Открыть приложение",
-    title: "Агент Darvoza",
+    title: "Агент Portiq",
     offline: "Сервер агентов здесь не запущен.",
     offlineHint: "Этот сайт — превью дизайна. Чтобы использовать настоящую мультиагентную систему, запустите её локально:",
     retry: "Повторить",
@@ -573,7 +573,7 @@ const ko: Dict = {
     sub: "필요한 것을 고르세요. 꼭 필요한 질문만 하나씩 드립니다.",
     note: "데모 · 샘플 데이터",
     modes: { jobs: "일자리 찾기", interview: "면접만", roadmap: "로드맵" },
-    qLang: "안녕하세요! Darvoza입니다. 먼저 언어를 선택해 주세요.",
+    qLang: "안녕하세요! Portiq입니다. 먼저 언어를 선택해 주세요.",
     qScope: "어디에서 일자리를 찾으시나요?",
     scope: {
       uz: "우즈베키스탄만",
@@ -689,7 +689,7 @@ const ko: Dict = {
     partial: "일부",
     no: "확인 안 됨",
     covers: "제공",
-    planned: "Darvoza 기능은 단계별로 공개 개발 중입니다.",
+    planned: "Portiq 기능은 단계별로 공개 개발 중입니다.",
     sourceNote: "출처: 공개 리뷰(Jobscan 2026 AI 도구 리뷰 포함) 및 각 서비스 페이지, 2026년 10월. 기능은 바뀔 수 있으니 각 사이트에서 확인하세요.",
     rows: {
       match: "일자리 검색 및 매칭",
@@ -709,7 +709,7 @@ const ko: Dict = {
   },
   app: {
     open: "앱 열기",
-    title: "Darvoza 에이전트",
+    title: "Portiq 에이전트",
     offline: "이곳에서는 에이전트 서버가 실행되고 있지 않습니다.",
     offlineHint: "이 사이트는 디자인 미리보기입니다. 실제 멀티 에이전트 시스템은 로컬에서 실행하세요:",
     retry: "다시 시도",

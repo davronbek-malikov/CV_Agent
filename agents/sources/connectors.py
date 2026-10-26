@@ -13,10 +13,10 @@ from typing import Any
 
 import httpx
 
-from darvoza_common.settings import get_settings
+from portiq_common.settings import get_settings
 
 log = logging.getLogger("sources")
-UA = "DarvozaJobHub/0.1 (+https://github.com/davronbek-malikov/CV_Agent)"
+UA = "PortiqJobHub/0.1 (+https://github.com/davronbek-malikov/CV_Agent)"
 
 
 def _strip_html(html: str) -> str:

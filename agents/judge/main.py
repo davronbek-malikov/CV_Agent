@@ -8,10 +8,10 @@ B) Answer scorer: scores interview answers with a rubric (A2A skill).
 
 from typing import Any
 
-from darvoza_common import db, llm
-from darvoza_common.agent import Agent
-from darvoza_common.envelope import Envelope, Topics
-from darvoza_common.settings import get_settings
+from portiq_common import db, llm
+from portiq_common.agent import Agent
+from portiq_common.envelope import Envelope, Topics
+from portiq_common.settings import get_settings
 
 from .checks import judge_output
 from .rubric import score_answer

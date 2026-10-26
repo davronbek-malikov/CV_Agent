@@ -11,7 +11,7 @@ Every agent serves `/.well-known/agent.json` and `POST /a2a`. `GET /api/agents` 
 
 ## Message envelope
 
-Every Kafka message is an `Envelope` (`libs/common/darvoza_common/envelope.py`):
+Every Kafka message is an `Envelope` (`libs/common/portiq_common/envelope.py`):
 `message_id, trace_id, session_id, type, source_agent, target_agent, task, task_id, attempt, lang, payload`.
 `trace_id` follows one user request across every agent; `task_id` ties a Judge verdict back to the
 orchestrator's pending task; `attempt` counts Judge retries.
@@ -57,7 +57,7 @@ scope (one country / several / all / remote). Slots already known (e.g. role fro
 
 ## LLM use
 
-`darvoza_common/llm.py` picks Anthropic, Gemini or Ollama from the keys in `.env`, else `mock`. Every
+`portiq_common/llm.py` picks Anthropic, Gemini or Ollama from the keys in `.env`, else `mock`. Every
 call passes a deterministic fallback, so the system works offline and degrades gracefully when a
 provider fails. The Judge uses a separate model (`LLM_JUDGE_MODEL`) to avoid grading its own work.
 

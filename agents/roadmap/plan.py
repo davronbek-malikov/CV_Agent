@@ -3,7 +3,7 @@
 import math
 from typing import Any
 
-from darvoza_common.jobs import ROLE_SKILLS, guess_role
+from portiq_common.jobs import ROLE_SKILLS, guess_role
 
 # Free, official-first resources.
 RESOURCES: dict[str, tuple[str, str]] = {
@@ -47,8 +47,8 @@ TEXT = {
               "ko": "{skills}(으)로 작은 프로젝트를 만들어 GitHub에 공개"},
     "write": {"en": "Write a 1-page case study for your portfolio", "uz": "Portfolio uchun 1 sahifalik case study yozing",
               "ru": "Напишите кейс на 1 страницу для портфолио", "ko": "포트폴리오용 1페이지 케이스 스터디 작성"},
-    "practice": {"en": "Practice 20 interview questions in Darvoza", "uz": "Darvozada 20 ta suhbat savolini mashq qiling",
-                 "ru": "Потренируйте 20 вопросов интервью в Darvoza", "ko": "Darvoza에서 면접 질문 20개 연습"},
+    "practice": {"en": "Practice 20 interview questions in Portiq", "uz": "Portiqda 20 ta suhbat savolini mashq qiling",
+                 "ru": "Потренируйте 20 вопросов интервью в Portiq", "ko": "Portiq에서 면접 질문 20개 연습"},
     "apply": {"en": "Apply to 5 matched jobs", "uz": "Mos 5 ta ishga ariza topshiring",
               "ru": "Откликнитесь на 5 подходящих вакансий", "ko": "추천 공고 5곳에 지원"},
     "block_learn": {"en": "Learn", "uz": "O‘rganish", "ru": "Изучение", "ko": "학습"},

@@ -3,7 +3,7 @@
 import re
 from typing import Any
 
-from darvoza_common.jobs import extract_skills, guess_role, role_from_skills
+from portiq_common.jobs import extract_skills, guess_role, role_from_skills
 
 EDU_WORDS = r"(universit|университет|대학교|college|institute|институт|bachelor|master|бакалавр|магистр|학사|석사|PhD|kollej)"
 LANG_WORDS = {

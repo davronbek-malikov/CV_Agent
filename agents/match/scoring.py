@@ -2,7 +2,7 @@
 
 from typing import Any
 
-from darvoza_common.jobs import ROLE_SKILLS, guess_role, parse_salary
+from portiq_common.jobs import ROLE_SKILLS, guess_role, parse_salary
 
 # Rough FX to compare salary wishes across currencies (monthly USD).
 TO_USD = {"USD": 1, "EUR": 1.08, "UZS": 1 / 12_700, "KRW": 1 / 1_380, "RUB": 1 / 95}

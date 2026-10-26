@@ -21,11 +21,11 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 
-from darvoza_common import a2a, db, llm
-from darvoza_common.bus import Bus
-from darvoza_common.envelope import Envelope, Topics
-from darvoza_common.settings import get_settings
-from darvoza_common.tracing import setup_logging, setup_tracing, span
+from portiq_common import a2a, db, llm
+from portiq_common.bus import Bus
+from portiq_common.envelope import Envelope, Topics
+from portiq_common.settings import get_settings
+from portiq_common.tracing import setup_logging, setup_tracing, span
 
 from .cv_text import MAX_BYTES, extract_text
 
@@ -53,7 +53,7 @@ async def lifespan(_: FastAPI):
     await bus.stop()
 
 
-app = FastAPI(title="Darvoza Gateway", lifespan=lifespan)
+app = FastAPI(title="Portiq Gateway", lifespan=lifespan)
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[o.strip() for o in get_settings().cors_origins.split(",")],

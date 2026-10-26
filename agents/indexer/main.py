@@ -2,10 +2,10 @@
 
 from datetime import datetime
 
-from darvoza_common import db
-from darvoza_common.agent import Agent
-from darvoza_common.embed import embed, to_pgvector
-from darvoza_common.envelope import Envelope, Topics
+from portiq_common import db
+from portiq_common.agent import Agent
+from portiq_common.embed import embed, to_pgvector
+from portiq_common.envelope import Envelope, Topics
 
 UPSERT = """
 INSERT INTO jobs (hash, source, url, title, company, city, country, remote, salary_min, salary_max, currency,

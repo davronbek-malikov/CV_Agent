@@ -6,10 +6,10 @@ from agents.normalizer.normalize import normalize
 from agents.profile.parse import parse_cv
 from agents.roadmap.plan import build_plan as build_roadmap
 from agents.scam.rules import assess
-from darvoza_common.embed import cosine, embed
-from darvoza_common.envelope import Envelope
-from darvoza_common.jobs import extract_skills, guess_role, parse_salary
-from darvoza_common.lang import detect_lang
+from portiq_common.embed import cosine, embed
+from portiq_common.envelope import Envelope
+from portiq_common.jobs import extract_skills, guess_role, parse_salary
+from portiq_common.lang import detect_lang
 
 
 def test_detect_lang():
@@ -138,7 +138,7 @@ def test_prompt_templates_format():
 
 
 def test_company_relevance():
-    from darvoza_common.text import mentions
+    from portiq_common.text import mentions
     assert mentions("Kakao", "Kakao Corporation")
     assert mentions("Kakao Corp.", "Kakao launches AI assistant")
     assert not mentions("Bazaar Online", "Cafe Bazaar")

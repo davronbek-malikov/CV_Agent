@@ -2,11 +2,11 @@
 
 from typing import Any
 
-from darvoza_common import a2a, db
-from darvoza_common.agent import Agent
-from darvoza_common.embed import embed, to_pgvector
-from darvoza_common.envelope import Envelope
-from darvoza_common.jobs import ROLE_SKILLS, ROLE_WORDS
+from portiq_common import a2a, db
+from portiq_common.agent import Agent
+from portiq_common.embed import embed, to_pgvector
+from portiq_common.envelope import Envelope
+from portiq_common.jobs import ROLE_SKILLS, ROLE_WORDS
 
 from .scoring import score_job
 

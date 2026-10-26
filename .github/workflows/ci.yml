@@ -43,5 +43,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: docker build -t darvoza-python:ci .
+      - run: docker build -t portiq-python:ci .
       - run: docker compose -f infra/docker-compose.yml config --quiet

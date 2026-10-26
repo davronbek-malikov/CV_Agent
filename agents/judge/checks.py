@@ -6,7 +6,7 @@ Each check returns (hard_issues, soft_issues). Hard issues trigger a RETRY
 
 from typing import Any
 
-from darvoza_common.text import mentions
+from portiq_common.text import mentions
 
 Issues = tuple[list[str], list[str]]
 

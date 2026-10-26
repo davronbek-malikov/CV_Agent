@@ -79,7 +79,7 @@ export const ROWS: { key: RowKey; cat: Category }[] = [
 
 export const TOOLS: { name: string; url: string; marks: Record<RowKey, Mark> }[] = [
   {
-    name: "Darvoza",
+    name: "Portiq",
     url: "#demo",
     marks: { match: "y", why: "y", cv: "p", mock: "y", company: "y", stress: "y", roadmap: "y", uz: "y", kr: "y", tg: "y", scam: "y", lang: "y", judge: "y" },
   },

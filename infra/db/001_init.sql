@@ -1,4 +1,4 @@
--- Darvoza schema v1. Runs once on first Postgres start; `make migrate` re-applies safely.
+-- Portiq schema v1. Runs once on first Postgres start; `make migrate` re-applies safely.
 CREATE EXTENSION IF NOT EXISTS vector;
 
 -- A profile belongs to a chat session until login exists (Phase 11).

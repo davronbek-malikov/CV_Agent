@@ -6,7 +6,7 @@ const inter = Inter({ variable: "--font-inter", subsets: ["latin", "cyrillic"] }
 const mono = JetBrains_Mono({ variable: "--font-mono-jb", subsets: ["latin", "cyrillic"] });
 
 export const metadata: Metadata = {
-  title: "Darvoza — Your door to the right job",
+  title: "Portiq — Your door to the right job",
   description:
     "AI job agent for Uzbekistan, Korea and worldwide: job matching, career roadmap and company-specific interview practice in Uzbek, Russian, Korean and English.",
 };

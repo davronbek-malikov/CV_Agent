@@ -3,7 +3,7 @@
 > **One hub to find your job, build your skills, and get ready for the interview.**
 > Jobs from Uzbekistan, Korea and the world — in Uzbek, Russian, Korean and English.
 
-**Product name:** Darvoza ("door/gate" in Uzbek). **Live preview:** https://darvoza-eight.vercel.app
+**Product name:** Portiq ("portal" + "IQ"; «портик» = entrance). **Live preview:** https://portiq-gamma.vercel.app
 
 ## Progress (2026-10-26)
 

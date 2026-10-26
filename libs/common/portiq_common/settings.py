@@ -8,7 +8,7 @@ class Settings(BaseSettings):
 
     kafka_bootstrap: str = "localhost:9092"
     redis_url: str = "redis://localhost:6379/0"
-    database_url: str = "postgresql://darvoza:darvoza@localhost:5432/darvoza"
+    database_url: str = "postgresql://portiq:portiq@localhost:5432/portiq"
 
     # LLM: "auto" picks the first provider with a key, else "mock".
     llm_provider: str = "auto"  # auto | anthropic | gemini | ollama | mock
@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     hh_access_token: str = ""
     tg_api_id: str = ""
     tg_api_hash: str = ""
-    tg_session: str = "darvoza"
+    tg_session: str = "portiq"
     tg_channels: str = ""  # comma-separated public channel usernames
     remotive_enabled: bool = True
     seed_enabled: bool = True
@@ -35,7 +35,7 @@ class Settings(BaseSettings):
 
     max_retries: int = 2
     otel_endpoint: str = ""  # e.g. http://jaeger:4318
-    cors_origins: str = "http://localhost:3000,https://darvoza-eight.vercel.app"
+    cors_origins: str = "http://localhost:3000,https://portiq-gamma.vercel.app"
 
 
 @lru_cache

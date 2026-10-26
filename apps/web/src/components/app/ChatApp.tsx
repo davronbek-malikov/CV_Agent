@@ -120,7 +120,7 @@ export default function ChatApp() {
       <header className="flex h-14 shrink-0 items-center justify-between gap-3 border-b border-line px-4">
         <Link href="/" className="flex items-center gap-2">
           <Logo size={26} />
-          <span className="text-[15px] font-semibold tracking-tight text-ink">Darvoza</span>
+          <span className="text-[15px] font-semibold tracking-tight text-ink">Portiq</span>
         </Link>
         <div className="flex items-center gap-2">
           {llm && (

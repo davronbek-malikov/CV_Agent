@@ -6,7 +6,7 @@ Axes: knowledge, structure (STAR), clarity, company fit.
 import re
 from typing import Any
 
-from darvoza_common.jobs import extract_skills
+from portiq_common.jobs import extract_skills
 
 STAR = [
     r"\bwhen\b", r"\bsituation\b", r"\btask\b", r"\bi (did|built|led|made|fixed|decided)\b", r"\bresult", r"\bso\b",

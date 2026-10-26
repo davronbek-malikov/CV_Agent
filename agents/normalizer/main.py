@@ -4,10 +4,10 @@ from typing import Any
 
 import redis.asyncio as aioredis
 
-from darvoza_common import llm
-from darvoza_common.agent import Agent
-from darvoza_common.envelope import Envelope, Topics
-from darvoza_common.settings import get_settings
+from portiq_common import llm
+from portiq_common.agent import Agent
+from portiq_common.envelope import Envelope, Topics
+from portiq_common.settings import get_settings
 
 from .normalize import heuristic_extract, normalize
 

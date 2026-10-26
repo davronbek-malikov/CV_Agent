@@ -33,9 +33,9 @@ def setup_tracing(service: str) -> None:
 
 @contextmanager
 def span(name: str, trace_id: str = "", **attrs):
-    tracer = trace.get_tracer("darvoza")
+    tracer = trace.get_tracer("portiq")
     with tracer.start_as_current_span(name) as s:
-        s.set_attribute("darvoza.trace_id", trace_id)
+        s.set_attribute("portiq.trace_id", trace_id)
         for k, v in attrs.items():
-            s.set_attribute(f"darvoza.{k}", str(v))
+            s.set_attribute(f"portiq.{k}", str(v))
         yield s

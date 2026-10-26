@@ -13,8 +13,8 @@ from typing import Any, TypedDict
 
 from langgraph.graph import END, StateGraph
 
-from darvoza_common.jobs import guess_role
-from darvoza_common.lang import detect_lang
+from portiq_common.jobs import guess_role
+from portiq_common.lang import detect_lang
 
 from .messages import LANG_CHIPS, SALARY_CHIPS, VISA_CHIPS, chips, msg
 

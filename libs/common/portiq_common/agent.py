@@ -1,4 +1,4 @@
-"""Base class for every Darvoza agent.
+"""Base class for every Portiq agent.
 
 An agent gets, for free:
 - an A2A Agent Card at /.well-known/agent.json and a JSON-RPC endpoint at /a2a
@@ -93,7 +93,7 @@ class Agent:
                 t.cancel()
             await self.bus.stop()
 
-        app = FastAPI(title=f"darvoza-{self.name}", lifespan=lifespan)
+        app = FastAPI(title=f"portiq-{self.name}", lifespan=lifespan)
 
         @app.get("/health")
         async def health() -> dict[str, str]:

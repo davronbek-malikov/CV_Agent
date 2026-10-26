@@ -2,10 +2,10 @@
 
 M: dict[str, dict[str, str]] = {
     "ask_lang": {
-        "en": "Hi! I’m Darvoza. First, choose your language.",
-        "uz": "Salom! Men Darvozaman. Avval tilni tanlang.",
-        "ru": "Привет! Я Darvoza. Сначала выберите язык.",
-        "ko": "안녕하세요! Darvoza입니다. 먼저 언어를 선택해 주세요.",
+        "en": "Hi! I’m Portiq. First, choose your language.",
+        "uz": "Salom! Men Portiqman. Avval tilni tanlang.",
+        "ru": "Привет! Я Portiq. Сначала выберите язык.",
+        "ko": "안녕하세요! Portiq입니다. 먼저 언어를 선택해 주세요.",
     },
     "ask_mode": {
         "en": "What do you need today?",

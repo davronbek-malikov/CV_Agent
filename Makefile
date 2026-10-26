@@ -26,7 +26,7 @@ topics:        ## (re)create Kafka topics
 	$(COMPOSE) run --rm kafka-init
 
 migrate:       ## (re)apply the SQL schema
-	$(COMPOSE) exec -T postgres psql -U darvoza -d darvoza -f /docker-entrypoint-initdb.d/001_init.sql
+	$(COMPOSE) exec -T postgres psql -U portiq -d portiq -f /docker-entrypoint-initdb.d/001_init.sql
 
 test:
 	$(PY) -m pytest -q

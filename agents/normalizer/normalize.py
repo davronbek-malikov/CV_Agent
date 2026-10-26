@@ -3,8 +3,8 @@
 import re
 from typing import Any
 
-from darvoza_common.jobs import extract_skills, job_hash, parse_salary
-from darvoza_common.lang import detect_lang
+from portiq_common.jobs import extract_skills, job_hash, parse_salary
+from portiq_common.lang import detect_lang
 
 CITIES = {
     "Tashkent": ["tashkent", "toshkent", "ташкент"],

@@ -11,7 +11,7 @@ import asyncio
 
 from telethon import TelegramClient
 
-from darvoza_common.settings import get_settings
+from portiq_common.settings import get_settings
 
 
 async def main() -> None:

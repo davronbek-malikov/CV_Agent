@@ -1,9 +1,9 @@
-# Darvoza — multi-agent job hub
+# Portiq — multi-agent job hub
 
 > **Your door to the right job.** Jobs from Uzbekistan, Korea and worldwide (incl. Telegram channels),
 > skill-gap roadmaps, and company-specific mock interviews — in Uzbek, Russian, Korean and English.
 
-**Live design preview:** https://darvoza-eight.vercel.app · **Full plan:** [PLAN.md](PLAN.md) · **Architecture:** [docs/architecture.md](docs/architecture.md)
+**Live design preview:** https://portiq-gamma.vercel.app · **Full plan:** [PLAN.md](PLAN.md) · **Architecture:** [docs/architecture.md](docs/architecture.md)
 
 Built as a real multi-agent system: an **orchestrator** (LangGraph) plans the work, **Kafka** carries
 tasks and the job pipeline, agents call each other over **A2A** (Agent Cards + JSON-RPC), and a **Judge

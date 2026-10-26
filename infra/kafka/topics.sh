@@ -1,5 +1,5 @@
 #!/bin/sh
-# Creates every Darvoza topic. Safe to run more than once.
+# Creates every Portiq topic. Safe to run more than once.
 set -e
 BS="${KAFKA_BOOTSTRAP:-kafka:9092}"
 KT=/opt/kafka/bin/kafka-topics.sh

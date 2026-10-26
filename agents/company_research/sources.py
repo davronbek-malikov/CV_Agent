@@ -7,9 +7,9 @@ from urllib.parse import quote
 import feedparser
 import httpx
 
-from darvoza_common.text import mentions
+from portiq_common.text import mentions
 
-UA = "DarvozaJobHub/0.1 (+https://github.com/davronbek-malikov/CV_Agent)"
+UA = "PortiqJobHub/0.1 (+https://github.com/davronbek-malikov/CV_Agent)"
 
 NEWS_LOCALE = {
     "ko": ("ko", "KR", "KR:ko"),

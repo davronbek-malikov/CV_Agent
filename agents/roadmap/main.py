@@ -3,9 +3,9 @@
 import re
 from typing import Any
 
-from darvoza_common import a2a, db
-from darvoza_common.agent import Agent
-from darvoza_common.envelope import Envelope
+from portiq_common import a2a, db
+from portiq_common.agent import Agent
+from portiq_common.envelope import Envelope
 
 from .plan import build_plan
 

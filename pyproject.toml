@@ -1,12 +1,12 @@
 [project]
-name = "darvoza"
+name = "portiq"
 version = "0.1.0"
 description = "Multi-agent job hub: Uzbekistan, Korea and worldwide"
 requires-python = ">=3.12"
 
 [tool.setuptools.packages.find]
 where = ["libs/common", "."]
-include = ["darvoza_common*", "agents*", "services*"]
+include = ["portiq_common*", "agents*", "services*"]
 
 [tool.pytest.ini_options]
 pythonpath = ["libs/common", "."]
@@ -24,4 +24,4 @@ select = ["E", "F", "I", "B", "UP"]
 ignore = ["E501", "B008", "E741"]
 
 [tool.ruff.lint.isort]
-known-first-party = ["darvoza_common", "agents", "services"]
+known-first-party = ["portiq_common", "agents", "services"]

@@ -2,9 +2,9 @@
 
 from typing import Any
 
-from darvoza_common import db, llm
-from darvoza_common.agent import Agent
-from darvoza_common.jobs import SKILLS
+from portiq_common import db, llm
+from portiq_common.agent import Agent
+from portiq_common.jobs import SKILLS
 
 from .parse import parse_cv
 

@@ -15,9 +15,9 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-30 border-b border-line/70 bg-white/85 backdrop-blur-md">
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-4 px-4 sm:px-6">
-        <a href="#top" className="flex items-center gap-2" aria-label="Darvoza home">
+        <a href="#top" className="flex items-center gap-2" aria-label="Portiq home">
           <Logo />
-          <span className="text-[17px] font-semibold tracking-tight text-ink">Darvoza</span>
+          <span className="text-[17px] font-semibold tracking-tight text-ink">Portiq</span>
         </a>
         <nav className="hidden items-center gap-7 md:flex">
           {links.map(([href, label]) => (

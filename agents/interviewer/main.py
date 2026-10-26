@@ -3,10 +3,10 @@
 import re
 from typing import Any
 
-from darvoza_common import llm
-from darvoza_common.agent import Agent
-from darvoza_common.envelope import Envelope
-from darvoza_common.jobs import ROLE_SKILLS
+from portiq_common import llm
+from portiq_common.agent import Agent
+from portiq_common.envelope import Envelope
+from portiq_common.jobs import ROLE_SKILLS
 
 from .bank import BANK, FOLLOW_UP, PLANS, ROLE_NAME
 

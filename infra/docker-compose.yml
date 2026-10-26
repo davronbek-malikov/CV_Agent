@@ -1,8 +1,8 @@
-name: darvoza
+name: portiq
 
 # All Python services share one image, built once by the gateway service.
 x-agent: &agent
-  image: darvoza-python:latest
+  image: portiq-python:latest
   pull_policy: never
   env_file:
     - path: ../.env
@@ -10,7 +10,7 @@ x-agent: &agent
   environment: &agent-env
     KAFKA_BOOTSTRAP: kafka:9092
     REDIS_URL: redis://redis:6379/0
-    DATABASE_URL: postgresql://darvoza:darvoza@postgres:5432/darvoza
+    DATABASE_URL: postgresql://portiq:portiq@postgres:5432/portiq
     OTEL_ENDPOINT: http://jaeger:4318
   depends_on: &agent-deps
     kafka-init:
@@ -76,16 +76,16 @@ services:
   postgres:
     image: pgvector/pgvector:pg16
     environment:
-      POSTGRES_USER: darvoza
-      POSTGRES_PASSWORD: darvoza
-      POSTGRES_DB: darvoza
+      POSTGRES_USER: portiq
+      POSTGRES_PASSWORD: portiq
+      POSTGRES_DB: portiq
     ports:
       - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./db:/docker-entrypoint-initdb.d:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U darvoza"]
+      test: ["CMD-SHELL", "pg_isready -U portiq"]
       interval: 3s
       retries: 30
 

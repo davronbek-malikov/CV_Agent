@@ -17,7 +17,7 @@ sys.path[:0] = [str(ROOT / "libs" / "common"), str(ROOT)]
 
 from agents.judge.rubric import score_answer  # noqa: E402
 from agents.scam.rules import assess  # noqa: E402
-from darvoza_common.jobs import parse_salary  # noqa: E402
+from portiq_common.jobs import parse_salary  # noqa: E402
 
 DATA = Path(__file__).parent / "datasets"
 
@@ -66,7 +66,7 @@ async def verdicts() -> dict | None:
     try:
         import asyncpg
 
-        conn = await asyncpg.connect("postgresql://darvoza:darvoza@localhost:5432/darvoza", timeout=3)
+        conn = await asyncpg.connect("postgresql://portiq:portiq@localhost:5432/portiq", timeout=3)
     except Exception:
         return None
     rows = await conn.fetch("SELECT agent, verdict, count(*) n FROM verdicts GROUP BY 1,2 ORDER BY 1,2")

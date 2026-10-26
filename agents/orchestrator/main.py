@@ -12,11 +12,11 @@ from typing import Any
 
 import redis.asyncio as aioredis
 
-from darvoza_common import a2a
-from darvoza_common.agent import Agent
-from darvoza_common.envelope import Envelope, Topics, new_id
-from darvoza_common.settings import get_settings
-from darvoza_common.tracing import span
+from portiq_common import a2a
+from portiq_common.agent import Agent
+from portiq_common.envelope import Envelope, Topics, new_id
+from portiq_common.settings import get_settings
+from portiq_common.tracing import span
 
 from .flow import Services, build_graph, new_session, on_verdict
 

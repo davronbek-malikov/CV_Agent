@@ -2,8 +2,8 @@
 
 from typing import Any
 
-from darvoza_common.agent import Agent
-from darvoza_common.envelope import Envelope, Topics
+from portiq_common.agent import Agent
+from portiq_common.envelope import Envelope, Topics
 
 from .rules import assess
 

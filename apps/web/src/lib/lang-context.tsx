@@ -6,7 +6,7 @@ import { DICTS, type Dict, type Lang } from "./i18n";
 type Ctx = { lang: Lang; setLang: (l: Lang) => void; t: Dict };
 
 const LangContext = createContext<Ctx | null>(null);
-const KEY = "darvoza-lang";
+const KEY = "portiq-lang";
 
 export function LangProvider({ children }: { children: React.ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
