@@ -26,6 +26,10 @@ export default function Header() {
             </a>
           ))}
         </nav>
+        <div className="flex items-center gap-2">
+        <a href="/app" className="hidden h-8 items-center rounded-full bg-ink px-3.5 text-[12.5px] font-medium text-white transition hover:bg-primary sm:inline-flex">
+          {t.app.open}
+        </a>
         <div className="flex rounded-full border border-line p-0.5" role="group" aria-label="Language">
           {LANGS.map((l) => (
             <button
@@ -40,6 +44,7 @@ export default function Header() {
               {l.short}
             </button>
           ))}
+        </div>
         </div>
       </div>
     </header>

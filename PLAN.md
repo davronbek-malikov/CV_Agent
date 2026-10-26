@@ -3,6 +3,29 @@
 > **One hub to find your job, build your skills, and get ready for the interview.**
 > Jobs from Uzbekistan, Korea and the world — in Uzbek, Russian, Korean and English.
 
+**Product name:** Darvoza ("door/gate" in Uzbek). **Live preview:** https://darvoza-eight.vercel.app
+
+## Progress (2026-10-26)
+
+| Phase | Status | Notes |
+|---|---|---|
+| UI preview | ✅ | Landing, 4 languages, demo, comparison table — on Vercel |
+| 0 Foundations | ✅ | docker-compose (Kafka KRaft, Postgres+pgvector, Redis, Jaeger, Redpanda Console), Makefile, CI |
+| 1 Multi-agent core | ✅ | Gateway + SSE, LangGraph orchestrator, A2A cards/JSON-RPC, Judge RETRY loop, DLQ, events, tracing |
+| 2 UI + real chat | ✅ | `/app`: language → mode → country flow, chips, rich blocks, live Agent Activity panel |
+| 3 Profile | ✅ | CV upload (PDF/DOCX/TXT) → skills, languages, TOPIK; skips known questions |
+| 4 Job Hub | 🟡 | Pipeline done; live sources: Remotive + sample. Saramin / hh.uz / Telegram coded, need keys |
+| 5 Match + Scam | ✅ | Explainable match %, multilingual scam rules |
+| 6 Interview Prep | ✅ | Wikipedia + news brief with sources, 11 rounds × 4 languages, follow-ups, rubric, report |
+| 7 Roadmap | ✅ | Gaps → plan that fits weekly hours, free resources |
+| 8 Korea Path | ❌ | Next |
+| 9 Telegram bot | ❌ | Needs bot token |
+| 10 Global | 🟡 | Remotive live; Adzuna/Jooble need keys |
+| 11 Evals + hardening | 🟡 | 20 unit tests, e2e, evals; login/rate limits/encryption not yet |
+| 12 Cloud backend | ❌ | Needs accounts |
+| 13–14 Voice, Avatar | ❌ | Later |
+| 15 Portfolio | 🟡 | README + architecture doc done; video later |
+
 ---
 
 ## Table of Contents

@@ -1,0 +1,19 @@
+[
+  {"title": "Backend Developer (Python)", "company": "PayLink", "city": "Tashkent", "country": "UZ", "salary_text": "12-18 mln so'm", "description": "Python, FastAPI, PostgreSQL, Docker. Payments platform with 2M users. Kafka is a plus. English B1."},
+  {"title": "Junior Python Developer", "company": "SoftBridge", "city": "Tashkent", "country": "UZ", "salary_text": "7-10 mln so'm", "description": "Python, Django, SQL, Git. Mentoring for juniors. Russian or Uzbek."},
+  {"title": "Frontend Developer (React)", "company": "Bazaar Online", "city": "Tashkent", "country": "UZ", "salary_text": "10-16 mln so'm", "description": "React, TypeScript, Next.js, Git. E-commerce marketplace. Work with designers in Figma."},
+  {"title": "Data Analyst", "company": "Agro Data Lab", "city": "Samarkand", "country": "UZ", "salary_text": "9-13 mln so'm", "description": "SQL, Excel, Power BI, Python pandas. Statistics basics. Report to product team."},
+  {"title": "Machine Learning Engineer", "company": "Navoi AI", "city": "Tashkent", "country": "UZ", "salary_text": "18-25 mln so'm", "description": "Python, PyTorch, machine learning, LLM and RAG pipelines, Docker. English B2."},
+  {"title": "Product Designer", "company": "Bazaar Online", "city": "Tashkent", "country": "UZ", "salary_text": "10-15 mln so'm", "description": "Figma, UI/UX design, user research, usability testing, design systems."},
+  {"title": "SMM Specialist", "company": "EduStart", "city": "Tashkent", "country": "UZ", "salary_text": "6-9 mln so'm", "description": "Instagram, Telegram, TikTok content, copywriting in Uzbek and Russian, Google Analytics."},
+  {"title": "DevOps Engineer", "company": "CloudUz", "city": "Tashkent", "country": "UZ", "salary_text": "15-22 mln so'm", "description": "Linux, Docker, Kubernetes, AWS or GCP, CI/CD with GitLab."},
+  {"title": "Mobile Developer (Flutter)", "company": "Yo'lda Tech", "city": "Bukhara", "country": "UZ", "salary_text": "9-14 mln so'm", "description": "Flutter, Dart, REST APIs, Git. Delivery app."},
+  {"title": "Chet elda ish! Koreyaga tezda", "company": "", "city": "Tashkent", "country": "UZ", "salary_text": "$5000", "description": "Koreyaga tezda ish. Viza kafolat 100%. Oldindan to'lov 500$. Pasport nusxasini yuboring. Faqat telegram @agent_fast."},
+  {"title": "Backend Engineer (E-7 sponsorship)", "company": "Cloudnine Korea", "city": "Seoul", "country": "KR", "salary_text": "4,200만원 - 5,000만원", "visa": "E-7", "description": "Python, Docker, AWS, Kafka. Korean TOPIK 4 preferred. Visa sponsorship (E-7) available."},
+  {"title": "ML Engineer", "company": "Hanbit AI", "city": "Pangyo", "country": "KR", "salary_text": "4,500만원 - 6,000만원", "description": "PyTorch, deep learning, MLOps, Python. English or Korean."},
+  {"title": "UI Designer", "company": "Mint Studio", "city": "Seoul", "country": "KR", "salary_text": "3,300만원 - 4,000만원", "description": "Figma, UI design, motion basics. Korean TOPIK 3+."},
+  {"title": "Global Marketing Manager (CIS)", "company": "K-Beauty Co.", "city": "Seoul", "country": "KR", "salary_text": "3,800만원 - 4,500만원", "visa": "E-7", "description": "Marketing for Russia and Central Asia. English, Russian, SEO, SMM. Korean TOPIK 4."},
+  {"title": "Data Analyst (Foreigners welcome)", "company": "Seoul Mobility", "city": "Seoul", "country": "KR", "salary_text": "3,600만원 - 4,200만원", "visa": "D-10, E-7", "description": "SQL, Python, Tableau, statistics. English working language."},
+  {"title": "Frontend Engineer", "company": "Pangyo Labs", "city": "Pangyo", "country": "KR", "salary_text": "4,000만원 - 5,500만원", "description": "React, TypeScript, Next.js. Korean business level."},
+  {"title": "Production Worker (EPS E-9)", "company": "Busan Metal Works", "city": "Busan", "country": "KR", "salary_text": "2,500,000원 / month", "visa": "E-9", "description": "Manufacturing line work through EPS (E-9). EPS-TOPIK required. Dormitory provided."}
+]

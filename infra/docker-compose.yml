@@ -1,0 +1,170 @@
+name: darvoza
+
+# All Python services share one image, built once by the gateway service.
+x-agent: &agent
+  image: darvoza-python:latest
+  pull_policy: never
+  env_file:
+    - path: ../.env
+      required: false
+  environment: &agent-env
+    KAFKA_BOOTSTRAP: kafka:9092
+    REDIS_URL: redis://redis:6379/0
+    DATABASE_URL: postgresql://darvoza:darvoza@postgres:5432/darvoza
+    OTEL_ENDPOINT: http://jaeger:4318
+  depends_on: &agent-deps
+    kafka-init:
+      condition: service_completed_successfully
+    postgres:
+      condition: service_healthy
+    redis:
+      condition: service_healthy
+  restart: unless-stopped
+  healthcheck:
+    test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+    interval: 10s
+    timeout: 3s
+    retries: 10
+
+services:
+  # --- infrastructure ---------------------------------------------------
+  kafka:
+    image: apache/kafka:3.9.1
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNAL://:9092,EXTERNAL://:29092,CONTROLLER://:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,EXTERNAL://localhost:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,EXTERNAL:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: 0
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "false"
+      KAFKA_HEAP_OPTS: -Xmx512m -Xms256m
+    ports:
+      - "29092:29092"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 >/dev/null 2>&1"]
+      interval: 5s
+      timeout: 10s
+      retries: 30
+
+  kafka-init:
+    image: apache/kafka:3.9.1
+    depends_on:
+      kafka:
+        condition: service_healthy
+    volumes:
+      - ./kafka/topics.sh:/topics.sh:ro
+    entrypoint: ["sh", "/topics.sh"]
+    restart: "no"
+
+  console:
+    image: docker.redpanda.com/redpandadata/console:v2.8.5
+    environment:
+      KAFKA_BROKERS: kafka:9092
+    ports:
+      - "8080:8080"
+    depends_on:
+      kafka:
+        condition: service_healthy
+
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: darvoza
+      POSTGRES_PASSWORD: darvoza
+      POSTGRES_DB: darvoza
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./db:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U darvoza"]
+      interval: 3s
+      retries: 30
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 3s
+      retries: 30
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.62.0
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "16686:16686"
+
+  # --- application --------------------------------------------------------
+  gateway:
+    <<: *agent
+    build:
+      context: ..
+      dockerfile: Dockerfile
+    pull_policy: build
+    command: ["python", "-m", "services.gateway.main"]
+    ports:
+      - "8000:8000"
+    volumes:
+      - uploads:/app/data
+
+  orchestrator:
+    <<: *agent
+    command: ["python", "-m", "agents.orchestrator.main"]
+
+  profile:
+    <<: *agent
+    command: ["python", "-m", "agents.profile.main"]
+
+  match:
+    <<: *agent
+    command: ["python", "-m", "agents.match.main"]
+
+  company-research:
+    <<: *agent
+    command: ["python", "-m", "agents.company_research.main"]
+
+  interviewer:
+    <<: *agent
+    command: ["python", "-m", "agents.interviewer.main"]
+
+  roadmap:
+    <<: *agent
+    command: ["python", "-m", "agents.roadmap.main"]
+
+  judge:
+    <<: *agent
+    command: ["python", "-m", "agents.judge.main"]
+
+  sources:
+    <<: *agent
+    command: ["python", "-m", "agents.sources.main"]
+    volumes:
+      - tgsession:/app/data
+
+  normalizer:
+    <<: *agent
+    command: ["python", "-m", "agents.normalizer.main"]
+
+  scam:
+    <<: *agent
+    command: ["python", "-m", "agents.scam.main"]
+
+  indexer:
+    <<: *agent
+    command: ["python", "-m", "agents.indexer.main"]
+
+volumes:
+  pgdata:
+  uploads:
+  tgsession:
