@@ -21,7 +21,7 @@ class Settings(BaseSettings):
     teachhelp_base_url: str = ""
     ollama_url: str = ""
     # Agent-to-agent calls that may wait on a slow (CPU) model.
-    a2a_llm_timeout: float = 330
+    a2a_llm_timeout: float = 450  # > the 420 s TeachHelp call
 
     # Job sources (off until a key is set)
     saramin_api_key: str = ""

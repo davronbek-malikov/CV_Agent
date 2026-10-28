@@ -76,7 +76,7 @@ class CompanyResearchAgent(Agent):
             data, model = await llm.complete_json(
                 BRIEF_PROMPT.replace("{lang}", lang),
                 "\n".join(f"[{n}] {s['title']}: {s['text']}" for n, s in enumerate(srcs)),
-                fallback)
+                fallback, max_tokens=640)
             rows = []
             for r in data.get("rows", []):
                 src = r.get("source")

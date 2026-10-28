@@ -20,13 +20,15 @@ def teachhelp(monkeypatch):
     monkeypatch.setenv("TEACHHELP_BASE_URL", BASE + "/")
     get_settings.cache_clear()
     seen: list[httpx.Request] = []
-    state = {"status": 200, "content": '{"name": "Aziz", "skills": ["Python"]}'}
+    state = {"status": 200, "content": '{"name": "Aziz", "skills": ["Python"]}', "finish": "stop", "pad": ""}
 
     def handler(request: httpx.Request) -> httpx.Response:
         seen.append(request)
         if state["status"] != 200:
             return httpx.Response(state["status"], json={"error": "x"})
-        return httpx.Response(200, json={"choices": [{"message": {"content": state["content"]}}]})
+        body = json.dumps({"choices": [{"message": {"content": state["content"]}, "finish_reason": state["finish"]}]})
+        # TeachHelp keeps the tunnel alive by sending whitespace before the JSON body.
+        return httpx.Response(200, content=(state["pad"] + body).encode(), headers={"content-type": "application/json"})
 
     real = httpx.AsyncClient
     monkeypatch.setattr(llm.httpx, "AsyncClient", lambda **kw: real(transport=httpx.MockTransport(handler), **kw))
@@ -46,7 +48,7 @@ async def test_auto_picks_teachhelp_and_sends_openai_request(teachhelp):
     body = json.loads(req.content)
     assert body["model"] == "qwen3.5-4b"
     assert body["messages"][0]["role"] == "system" and body["messages"][1] == {"role": "user", "content": "Aziz, Python"}
-    assert body["max_tokens"] == 1536 and body["temperature"] == 0
+    assert body["max_tokens"] == 1024 and body["temperature"] == 0
     assert body["response_format"] == {"type": "json_object"}
 
 
@@ -79,3 +81,25 @@ async def test_errors_fall_back(teachhelp, status):
     state["status"] = status
     data, model = await llm.complete_json("x", "y", lambda: {"fallback": True})
     assert data == {"fallback": True} and model == "fallback"
+
+
+async def test_per_call_budget_and_cap(teachhelp):
+    seen, _ = teachhelp
+    await llm.complete_json("x", "y", lambda: {}, max_tokens=256)
+    await llm.complete_json("x", "y", lambda: {}, max_tokens=4000)
+    assert [json.loads(r.content)["max_tokens"] for r in seen] == [256, llm.TEACHHELP_MAX_ANSWER]
+
+
+async def test_leading_whitespace_body_parses(teachhelp):
+    _, state = teachhelp
+    state["pad"] = " \n" * 500
+    data, model = await llm.complete_json("x", "y", lambda: {"fallback": True})
+    assert data == {"name": "Aziz", "skills": ["Python"]} and model == "qwen3.5-4b"
+
+
+async def test_cut_off_answer_is_logged_and_falls_back(teachhelp, caplog):
+    _, state = teachhelp
+    state.update(finish="length", content='{"name": "Az')
+    data, model = await llm.complete_json("x", "y", lambda: {"fallback": True}, max_tokens=64)
+    assert data == {"fallback": True} and model == "fallback"
+    assert "hit max_tokens (64)" in caplog.text

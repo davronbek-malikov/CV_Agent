@@ -72,7 +72,7 @@ class InterviewerAgent(Agent):
         cats = [q["category"] for q in fallback]
         data, model = await llm.complete_json(
             PLAN_PROMPT.format(company=inp.get("company"), role=inp.get("role") or "dev", lang=lang, cats=", ".join(cats)),
-            f"Brief: {[r.get('text') for r in brief.get('rows', [])]}\nCV skills: {skills}", fb)
+            f"Brief: {[r.get('text') for r in brief.get('rows', [])]}\nCV skills: {skills}", fb, max_tokens=1024)
         qs = data.get("questions") or fallback
         for i, q in enumerate(qs):
             q["id"] = i

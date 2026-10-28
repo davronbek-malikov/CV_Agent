@@ -51,7 +51,7 @@ class ProfileAgent(Agent):
         sid = input.get("session_id", "")
         if skill_id == "parse_cv":
             text = input.get("text", "")[:15000]
-            parsed, model = await llm.complete_json(CV_PROMPT, text, lambda: parse_cv(text))
+            parsed, model = await llm.complete_json(CV_PROMPT, text, lambda: parse_cv(text), max_tokens=512)
             wishes = {k: parsed[k] for k in ("korean_level", "role_guess") if parsed.get(k)}
             await self.save(sid, {**parsed, "wishes": wishes}, cv_text=text)
             return {"profile": parsed, "model": model}

@@ -25,10 +25,11 @@ DEFAULT_MODELS = {
     "teachhelp": ("qwen3.5-4b", "qwen3.5-4b"),
 }
 
-# TeachHelp: 4096-token context shared by prompt and answer; ~8-10 tokens/s on CPU.
+# TeachHelp: 4096-token context shared by prompt and answer; ~3.7 tokens/s through the
+# tunnel (two models share one 4-core CPU), so 1024 tokens take ~4.5 minutes.
 TEACHHELP_CONTEXT = 4096
-TEACHHELP_MAX_ANSWER = 1536
-TEACHHELP_TIMEOUT = 300
+TEACHHELP_MAX_ANSWER = 1024  # callers ask for less when their answer is short
+TEACHHELP_TIMEOUT = 420
 TEACHHELP_ERRORS = {
     401: "key revoked or expired",
     403: "key is limited to another model",
@@ -90,10 +91,10 @@ def fit_tokens(text: str, max_tokens: int) -> str:
     return text[:lo]
 
 
-async def _teachhelp(system: str, user: str, model: str) -> str:
+async def _teachhelp(system: str, user: str, model: str, max_tokens: int) -> str:
     s = get_settings()
     # Prompt + answer must fit the context: trim the user text (e.g. a long CV), never the instructions.
-    budget = TEACHHELP_CONTEXT - TEACHHELP_MAX_ANSWER - estimate_tokens(system) - 64
+    budget = TEACHHELP_CONTEXT - max_tokens - estimate_tokens(system) - 64
     user = fit_tokens(user, max(budget, 256))
     async with httpx.AsyncClient(timeout=TEACHHELP_TIMEOUT) as client:
         r = await client.post(
@@ -101,20 +102,24 @@ async def _teachhelp(system: str, user: str, model: str) -> str:
             headers={"Authorization": f"Bearer {s.teachhelp_api_key}"},
             json={"model": model,
                   "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
-                  "max_tokens": TEACHHELP_MAX_ANSWER, "temperature": 0,
+                  "max_tokens": max_tokens, "temperature": 0,
                   "response_format": {"type": "json_object"}},
         )
     if r.status_code in TEACHHELP_ERRORS:
         raise RuntimeError(f"teachhelp {r.status_code}: {TEACHHELP_ERRORS[r.status_code]}")
     r.raise_for_status()
-    return r.json()["choices"][0]["message"]["content"]
+    # r.json() tolerates the leading whitespace TeachHelp sends to keep the tunnel open.
+    choice = r.json()["choices"][0]
+    if choice.get("finish_reason") == "length":
+        raise RuntimeError(f"teachhelp answer hit max_tokens ({max_tokens}): JSON is cut off")
+    return choice["message"]["content"]
 
 
-async def _call(system: str, user: str, model: str) -> str:
+async def _call(system: str, user: str, model: str, max_tokens: int) -> str:
     s = get_settings()
     p = provider()
     if p == "teachhelp":
-        return await _teachhelp(system, user, model)
+        return await _teachhelp(system, user, model, min(max_tokens, TEACHHELP_MAX_ANSWER))
     async with httpx.AsyncClient(timeout=60) as client:
         if p == "anthropic":
             r = await client.post(
@@ -146,13 +151,17 @@ async def _call(system: str, user: str, model: str) -> str:
     raise RuntimeError(f"unknown provider {p}")
 
 
-async def complete_json(system: str, user: str, fallback: Callable[[], Any], judge: bool = False) -> tuple[Any, str]:
-    """Return (data, model_used). Falls back on mock mode or any provider error."""
+async def complete_json(system: str, user: str, fallback: Callable[[], Any], judge: bool = False,
+                        max_tokens: int = TEACHHELP_MAX_ANSWER) -> tuple[Any, str]:
+    """Return (data, model_used). Falls back on mock mode or any provider error.
+
+    max_tokens caps the answer on slow providers (TeachHelp); ask only for what the answer needs.
+    """
     model = _model(judge)
     if model == "mock":
         return fallback(), "mock"
     try:
-        text = await _call(system + "\nReply with JSON only.", user, model)
+        text = await _call(system + "\nReply with JSON only.", user, model, max_tokens)
         return _extract_json(text), model
     except Exception as e:
         log.warning("llm call failed (%s), using fallback", e)

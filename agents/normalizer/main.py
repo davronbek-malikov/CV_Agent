@@ -32,7 +32,7 @@ class NormalizerAgent(Agent):
         extracted = None
         if raw.get("raw_text"):
             extracted, _ = await llm.complete_json(
-                EXTRACT_PROMPT, raw["raw_text"][:3000], lambda: heuristic_extract(raw["raw_text"]))
+                EXTRACT_PROMPT, raw["raw_text"][:3000], lambda: heuristic_extract(raw["raw_text"]), max_tokens=192)
         return normalize(raw, extracted)
 
     async def on_raw(self, env: Envelope) -> None:

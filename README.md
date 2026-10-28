@@ -62,9 +62,11 @@ TEACHHELP_BASE_URL=https://xxx.trycloudflare.com/v1   # changes when the TeachHe
 ```
 
 `curl localhost:8000/health` should report `"llm": "teachhelp"`. Defaults to `qwen3.5-4b` with
-JSON mode. The model runs on a CPU (~8-10 tokens/s), so one LLM step can take a minute or more.
-Prompts are trimmed to fit the 4096-token context, and on any error (401 revoked key, 403 wrong
-model, 429 rate limit of 20/min and 500/day, 503 server off) agents fall back to their rules.
+JSON mode. The model runs on a shared CPU (~3.7 tokens/s through the tunnel), so each agent asks
+only for the answer length it needs (192–1024 tokens; 1024 takes ~4.5 min) within a 420 s timeout.
+Prompts are trimmed to fit the 4096-token context. A cut-off answer (`finish_reason: length`) is
+logged as "hit max_tokens"; on that or any error (401 revoked key, 403 wrong model, 429 rate limit
+of 20/min and 500/day, 503 server off) agents fall back to their rules.
 
 ## Agents
 

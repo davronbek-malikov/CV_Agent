@@ -73,7 +73,7 @@ class JudgeAgent(Agent):
         data, model = await llm.complete_json(
             SCORE_PROMPT.replace("{lang}", lang),
             f"Company: {inp.get('company')}\nQuestion: {inp.get('question')}\nAnswer: {inp.get('answer')}",
-            fb, judge=True)
+            fb, judge=True, max_tokens=512)
         if model not in ("mock", "fallback"):
             s = {k: float(data.get("scores", {}).get(k, base["scores"][k])) for k in base["scores"]}
             data = {**base, "scores": s, "total": round(sum(s.values()) / 20 * 100),
