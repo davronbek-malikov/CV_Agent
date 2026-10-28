@@ -57,7 +57,7 @@ scope (one country / several / all / remote). Slots already known (e.g. role fro
 
 ## LLM use
 
-`portiq_common/llm.py` picks Anthropic, Gemini or Ollama from the keys in `.env`, else `mock`. Every
+`portiq_common/llm.py` picks Anthropic, Gemini, TeachHelp (our own model, OpenAI-compatible) or Ollama from the keys in `.env`, else `mock`. Every
 call passes a deterministic fallback, so the system works offline and degrades gracefully when a
 provider fails. The Judge uses a separate model (`LLM_JUDGE_MODEL`) to avoid grading its own work.
 

@@ -11,12 +11,17 @@ class Settings(BaseSettings):
     database_url: str = "postgresql://portiq:portiq@localhost:5432/portiq"
 
     # LLM: "auto" picks the first provider with a key, else "mock".
-    llm_provider: str = "auto"  # auto | anthropic | gemini | ollama | mock
+    llm_provider: str = "auto"  # auto | anthropic | gemini | teachhelp | ollama | mock
     llm_model: str = ""
     llm_judge_model: str = ""  # judge runs on a different model when set
     anthropic_api_key: str = ""
     gemini_api_key: str = ""
+    # Server-side only. The base URL changes whenever the TeachHelp tunnel restarts.
+    teachhelp_api_key: str = ""
+    teachhelp_base_url: str = ""
     ollama_url: str = ""
+    # Agent-to-agent calls that may wait on a slow (CPU) model.
+    a2a_llm_timeout: float = 330
 
     # Job sources (off until a key is set)
     saramin_api_key: str = ""

@@ -48,6 +48,24 @@ rubric) and jobs come from sample data + Remotive. Copy `.env.example` to `.env`
 `ANTHROPIC_API_KEY` or `GEMINI_API_KEY` (or `OLLAMA_URL`) switches every agent to a real model;
 `SARAMIN_API_KEY`, `HH_ACCESS_TOKEN`, `TG_API_ID/TG_API_HASH/TG_CHANNELS` switch on more job sources.
 
+## Run on the TeachHelp model
+
+Portiq can run every agent on our own model served by the TeachHelp API (OpenAI-compatible).
+Put this in `.env` (server-side only — never `NEXT_PUBLIC_`), then `make up`:
+
+```bash
+LLM_PROVIDER=teachhelp
+TEACHHELP_API_KEY=sk-th-...
+TEACHHELP_BASE_URL=https://xxx.trycloudflare.com/v1   # changes when the TeachHelp server restarts
+# optional, for the lesson: let our 1.5B fine-tune judge next to Qwen (expect more fallbacks)
+# LLM_JUDGE_MODEL=sft-lora-dpo-v2
+```
+
+`curl localhost:8000/health` should report `"llm": "teachhelp"`. Defaults to `qwen3.5-4b` with
+JSON mode. The model runs on a CPU (~8-10 tokens/s), so one LLM step can take a minute or more.
+Prompts are trimmed to fit the 4096-token context, and on any error (401 revoked key, 403 wrong
+model, 429 rate limit of 20/min and 500/day, 503 server off) agents fall back to their rules.
+
 ## Agents
 
 | Agent | Talks via | Does |

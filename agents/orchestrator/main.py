@@ -46,7 +46,7 @@ class OrchestratorAgent(Agent):
             return None
 
     async def _score(self, inp: dict[str, Any]) -> dict[str, Any]:
-        return await a2a.call("judge", "score_answer", inp, timeout=60)
+        return await a2a.call("judge", "score_answer", inp, timeout=get_settings().a2a_llm_timeout)
 
     async def _follow_up(self, answer: str, lang: str) -> str | None:
         try:

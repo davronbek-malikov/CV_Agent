@@ -129,7 +129,8 @@ async def upload_cv(session_id: str = Form(...), file: UploadFile = File(...)) -
     env = Envelope(type="event", session_id=session_id, source_agent="gateway")
     await bus.publish(Topics.AGENT_EVENTS, env.child(type="event", source_agent="gateway",
                       payload={"agent": "profile", "status": "started", "text": "reading CV…"}))
-    result = await a2a.call("profile", "parse_cv", {"session_id": session_id, "text": text}, env.trace_id, timeout=90)
+    result = await a2a.call("profile", "parse_cv", {"session_id": session_id, "text": text}, env.trace_id,
+                          timeout=get_settings().a2a_llm_timeout)
     await bus.publish(Topics.AGENT_EVENTS, env.child(type="event", source_agent="profile",
                       payload={"agent": "profile", "status": "done",
                                "text": f"{len(result['profile'].get('skills', []))} skills found"}))

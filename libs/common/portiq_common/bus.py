@@ -58,6 +58,8 @@ class Bus:
             client_id=self.client_id,
             auto_offset_reset="latest" if from_latest else "earliest",
             enable_auto_commit=True,
+            # A handler may wait minutes on a CPU-hosted model; don't get kicked from the group.
+            max_poll_interval_ms=900_000,
         )
         for attempt in range(30):
             try:
