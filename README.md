@@ -1,13 +1,13 @@
-# Portiq — multi-agent job hub
+# Portiq: multi-agent job hub
 
 > **Your door to the right job.** Jobs from Uzbekistan, Korea and worldwide (incl. Telegram channels),
-> skill-gap roadmaps, and company-specific mock interviews — in Uzbek, Russian, Korean and English.
+> skill-gap roadmaps, and company-specific mock interviews, in Uzbek, Russian, Korean and English.
 
 **Live design preview:** https://portiq-gamma.vercel.app · **Full plan:** [PLAN.md](PLAN.md) · **Architecture:** [docs/architecture.md](docs/architecture.md)
 
 Built as a real multi-agent system: an **orchestrator** (LangGraph) plans the work, **Kafka** carries
 tasks and the job pipeline, agents call each other over **A2A** (Agent Cards + JSON-RPC), and a **Judge
-agent** checks every output — sending weak work back for a retry — before the user sees it.
+agent** checks every output (sending weak work back for a retry) before the user sees it.
 
 ```
  Web app / curl ──► Gateway (FastAPI, SSE) ──► user.requests ──► Orchestrator (LangGraph)
@@ -40,18 +40,18 @@ cd apps/web && pnpm install && pnpm dev   # http://localhost:3000/app
 |---|---|
 | http://localhost:3000/app | Chat app with live agent activity |
 | http://localhost:8000/docs | Gateway API |
-| http://localhost:8080 | Redpanda Console — watch Kafka topics |
-| http://localhost:16686 | Jaeger — traces across agents |
+| http://localhost:8080 | Redpanda Console, watch Kafka topics |
+| http://localhost:16686 | Jaeger, traces across agents |
 
 No keys needed: without an LLM key the agents use deterministic fallbacks (rules, question bank,
-rubric) and jobs come from sample data + Remotive. Copy `.env.example` to `.env` to add keys —
+rubric) and jobs come from sample data + Remotive. Copy `.env.example` to `.env` to add keys,
 `ANTHROPIC_API_KEY` or `GEMINI_API_KEY` (or `OLLAMA_URL`) switches every agent to a real model;
 `SARAMIN_API_KEY`, `HH_ACCESS_TOKEN`, `TG_API_ID/TG_API_HASH/TG_CHANNELS` switch on more job sources.
 
 ## Run on the TeachHelp model
 
 Portiq can run every agent on our own model served by the TeachHelp API (OpenAI-compatible).
-Put this in `.env` (server-side only — never `NEXT_PUBLIC_`), then `make up`:
+Put this in `.env` (server-side only, never `NEXT_PUBLIC_`), then `make up`:
 
 ```bash
 LLM_PROVIDER=teachhelp
